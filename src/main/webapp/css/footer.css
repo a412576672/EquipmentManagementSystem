@@ -1,0 +1,129 @@
+.footer {
+				clear: both;
+				min-width: 1200px;
+				width: 100%;
+				height: auto;
+				overflow: hidden;
+			}
+
+			.footer .footer-nav {
+				clear: both;
+				width: 100%;
+				height: 250px;
+				padding: 30px 0;
+				background: #eee;
+			}
+
+			.footer .footer-nav .footer-nav-info {
+				clear: both;
+				width: 1160px;
+				height: auto;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+
+			.footer .footer-nav .footer-nav-info ul {
+				clear: both;
+				width: 550px;
+				float: left;
+			}
+
+			 .footer .footer-nav .footer-nav-info ul li {
+				float: left;
+				width: 25%;
+				list-style: none;
+
+			}
+
+			.footer .footer-nav .footer-nav-info ul li a,
+			.footer .footer-nav .footer-nav-info ul li b {
+				display: block;
+				height: 33px;
+			}
+
+			.footer .footer-nav .footer-nav-info ul li b {
+				font-size: 16px;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad {
+				width: 580px;
+				float: right;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad .code {
+				border: #c3c3c3 solid 1px;
+				border-radius: 3px;
+				padding: 10px;
+				height: auto;
+				overflow: hidden;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad .code img {
+				display: inline-block;
+				float: left;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad .code .codeintro {
+				padding: 0 15px;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad .code .codeintro {
+				display: inline-block;
+				float: left;
+			}
+
+			.ml50 {
+				margin-left: 50px !important;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad .code .codeintro i {
+				font-style: normal;
+				font-size: 14px;
+				line-height: 30px;
+				display: block;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad .code .codeintro b {
+				font-size: 20px;
+				font-weight: normal;
+				line-height: 30px;
+			}
+
+			.footer .footer-nav .footer-nav-info .ad .teline {
+				clear: both;
+				float: right;
+				padding: 26px 0 0 30px;
+				font-size: 20px;
+				color: #636363;
+				letter-spacing: -0.15px;
+				font-weight: bold;
+				background: url(../images/img/tel.png) no-repeat left 30px;
+			}
+
+			.footer .footer-copy {
+				clear: both;
+				width: 100%;
+				height: auto;
+				background: #EBEBEB;
+				text-align: center;
+				line-height: 35px;
+				overflow: hidden;
+				padding: 20px 0;
+				color: #666;
+				font-size: 14px;
+			}
+
+			#a1 {
+				display: inline-block;
+				text-decoration: none;
+				height: 20px;
+				line-height: 20px;
+			}
+
+			#pp1 {
+				float: left;
+				height: 20px;
+				line-height: 20px;
+				margin: 0px 0px 0px 5px;
+				color: #939393;
+			}

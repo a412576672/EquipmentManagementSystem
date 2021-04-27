@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.softeem.ssm.mapper.MaintainMapper">
+  <resultMap id="BaseResultMap" type="com.softeem.ssm.entity.Maintain">
+    <id column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="rid" jdbcType="INTEGER" property="rid" />
+    <result column="stime" jdbcType="VARCHAR" property="stime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    mid, fid, rid, stime, status
+  </sql>
+  <select id="selectByExample" parameterType="com.softeem.ssm.entity.MaintainExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from maintain
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByfId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from maintain
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from maintain
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.softeem.ssm.entity.MaintainExample">
+    delete from maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.softeem.ssm.entity.Maintain">
+    insert into maintain (mid, fid, rid, 
+      stime, status)
+    values (#{mid,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, 
+      #{stime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.softeem.ssm.entity.Maintain">
+    insert into maintain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="rid != null">
+        rid,
+      </if>
+      <if test="stime != null">
+        stime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null">
+        #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.softeem.ssm.entity.MaintainExample" resultType="java.lang.Long">
+    select count(*) from maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update maintain
+    <set>
+      <if test="record.mid != null">
+        mid = #{record.mid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fid != null">
+        fid = #{record.fid,jdbcType=INTEGER},
+      </if>
+      <if test="record.rid != null">
+        rid = #{record.rid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stime != null">
+        stime = #{record.stime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update maintain
+    set mid = #{record.mid,jdbcType=INTEGER},
+      fid = #{record.fid,jdbcType=INTEGER},
+      rid = #{record.rid,jdbcType=INTEGER},
+      stime = #{record.stime,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.softeem.ssm.entity.Maintain">
+    update maintain
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null">
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null">
+        stime = #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.softeem.ssm.entity.Maintain">
+    update maintain
+    set fid = #{fid,jdbcType=INTEGER},
+      rid = #{rid,jdbcType=INTEGER},
+      stime = #{stime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="modelResultMap" type="com.softeem.ssm.model.MaintainModel">
+    <id column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="rid" jdbcType="INTEGER" property="rid" />
+    <result column="stime" jdbcType="VARCHAR" property="stime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <association property="faultModel" select="com.softeem.ssm.mapper.FaultMapper.selectByFaultId" column="fid"/>
+    <association property="repairman"  select="com.softeem.ssm.mapper.RepairmanMapper.selectByPrimaryKey" column="rid"/>
+  </resultMap>
+  <select id="selectMaintainModelByExample" parameterType="com.softeem.ssm.entity.MaintainExample" resultMap="modelResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitIndex !=null">
+      <if test="limitLen != null">
+        limit ${limitIndex} ,${limitLen}
+      </if>
+    </if>
+  </select>
+
+<!--  selectMaintainModelByPrimaryKey-->
+  <select id="selectMaintainModelByPrimaryKey" parameterType="java.lang.Integer" resultMap="modelResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from maintain
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+</mapper>

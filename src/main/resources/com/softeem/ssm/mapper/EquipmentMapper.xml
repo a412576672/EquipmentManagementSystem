@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.softeem.ssm.mapper.EquipmentMapper">
+  <resultMap id="BaseResultMap" type="com.softeem.ssm.entity.Equipment">
+    <id column="eid" jdbcType="INTEGER" property="eid" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="wid" jdbcType="INTEGER" property="wid" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    eid, ename, add_time, state, wid, cid, path
+  </sql>
+  <select id="selectByExample" parameterType="com.softeem.ssm.entity.EquipmentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from equipment
+    where eid = #{eid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from equipment
+    where eid = #{eid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.softeem.ssm.entity.EquipmentExample">
+    delete from equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.softeem.ssm.entity.Equipment">
+    insert into equipment (eid, ename, add_time, 
+      state, wid, cid, path
+      )
+    values (#{eid,jdbcType=INTEGER}, #{ename,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{wid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.softeem.ssm.entity.Equipment">
+    insert into equipment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        eid,
+      </if>
+      <if test="ename != null">
+        ename,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="wid != null">
+        wid,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.softeem.ssm.entity.EquipmentExample" resultType="java.lang.Long">
+    select count(*) from equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update equipment
+    <set>
+      <if test="record.eid != null">
+        eid = #{record.eid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ename != null">
+        ename = #{record.ename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wid != null">
+        wid = #{record.wid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cid != null">
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.path != null">
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update equipment
+    set eid = #{record.eid,jdbcType=INTEGER},
+      ename = #{record.ename,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      wid = #{record.wid,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
+      path = #{record.path,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.softeem.ssm.entity.Equipment">
+    update equipment
+    <set>
+      <if test="ename != null">
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null">
+        wid = #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.softeem.ssm.entity.Equipment">
+    update equipment
+    set ename = #{ename,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      wid = #{wid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR}
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="modelResultMap" type="com.softeem.ssm.model.EquipmentModel">
+    <id column="eid" jdbcType="INTEGER" property="eid" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="wid" jdbcType="INTEGER" property="wid" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <association property="classify" select="com.softeem.ssm.mapper.ClassifyMapper.selectByPrimaryKey" column="cid"/>
+    <association property="workshop" select="com.softeem.ssm.mapper.WorkshopMapper.selectByPrimaryKey" column="wid"/>
+  </resultMap>
+  <select id="selectEquipmentModelByIdLimit" parameterType="com.softeem.ssm.entity.EquipmentExample" resultMap="modelResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limitIndex !=null">
+      <if test="limitLen != null">
+        limit ${limitIndex} ,${limitLen}
+      </if>
+    </if>
+  </select>
+
+  <resultMap id="model1Map" type="com.softeem.ssm.model.EquipmentModel1">
+    <id column="eid" jdbcType="INTEGER" property="eid" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="wid" jdbcType="INTEGER" property="wid" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <collection property="faults" select="com.softeem.ssm.mapper.FaultMapper.selectByEid" column="eid"/>
+  </resultMap>
+  <select id="selectByEid" parameterType="java.lang.Integer" resultMap="model1Map">
+    select
+    <include refid="Base_Column_List" />
+    from equipment
+    where eid = #{eid,jdbcType=INTEGER}
+  </select>
+</mapper>
