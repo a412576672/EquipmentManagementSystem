@@ -105,4 +105,9 @@ public class AdminController {
         System.out.println("更新管理员结果为" + b);
         return b;
     }
+    @RequestMapping("/test")
+    @ResponseBody
+    public String gitAdd(){
+        return "hello git";
+    }
 }
