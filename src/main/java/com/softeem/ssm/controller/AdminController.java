@@ -108,6 +108,6 @@ public class AdminController {
     @RequestMapping("/test")
     @ResponseBody
     public String gitAdd(){
-        return "hello world git";
+        return "hello test world git";
     }
 }
